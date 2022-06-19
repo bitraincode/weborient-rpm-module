@@ -1,0 +1,23 @@
+{
+  "name": "weborient-rpm-module",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "serve": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bitraincode/weborient-rpm-module.git"
+  },
+  "author": "bit_rain",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bitraincode/weborient-rpm-module/issues"
+  },
+  "homepage": "https://github.com/bitraincode/weborient-rpm-module#readme",
+  "dependencies": {
+    "body-parser": "^1.20.0",
+    "express": "^4.18.1"
+  }
+}
