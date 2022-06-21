@@ -1,9 +1,10 @@
-const app = require('express')(),
+const express = require('express'),
+    app = express(),
     router = require('./src/controllers/index'),
-    PORT = 3000,
-    bodyParser = require("body-parser")
+    PORT = 3000
+    // bodyParser = require("body-parser")
 
-app.use(bodyParser.json())
+app.use(express.json())
 app.use(router)
 
 app.listen(PORT, () => {
