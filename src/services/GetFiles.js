@@ -2,15 +2,15 @@ function getFiles(files) {
     files.forEach(file => (checkExtension(file.originalname)))
 
     const encoding = 'windows-1251'
-    let csvStringArray = []
+    let csvStringMap = new Map()
     files.forEach(file => {
-        csvStringArray.push(new TextDecoder(encoding).decode(file.buffer))
+        csvStringMap.set(file.originalname, new TextDecoder(encoding).decode(file.buffer))
     })
-    console.log(csvStringArray)
+    return csvStringMap
 }
 
 function checkExtension(fileName) {
-    if (fileName !== 'csv') {
+    if (fileName !== 'htm') {
         // TODO: throw exception
     }
 }
