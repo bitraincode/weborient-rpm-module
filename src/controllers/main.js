@@ -7,8 +7,8 @@ router.get('/ping', (req, res) => {
 })
 
 router.post('/upload', upload.array('files', 7), (req, res) => {
-    const filesMap = getFile(req.files)
-    res.send('ok').status(200)
+    const files = getFile(req.files)
+    res.send(files).status(200)
 })
 
 module.exports = router
