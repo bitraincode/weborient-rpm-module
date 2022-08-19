@@ -1,6 +1,7 @@
 const router = require('express').Router(),
     upload = require('multer')(),
-    getFiles = require('../services/GetFiles')
+    getFiles = require('../services/GetFiles'),
+    mergeProtocols = require('../services/ProtocolMaker')
 
 router.get('/ping', (req, res) => {
     res.send('pong')
@@ -8,7 +9,7 @@ router.get('/ping', (req, res) => {
 
 router.post('/upload', upload.array('files', 7), (req, res) => {
     const files = getFiles(req.files, req.query)
-    res.send(files).status(200)
+    res.send(mergeProtocols(files)).status(200)
 })
 
 module.exports = router

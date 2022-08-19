@@ -20,8 +20,15 @@ function getGroups(root) {
             return createParticipantObject(member.replace(/\r\n/, ''))
         })
 
-        const groupLeader = groupMembers.find(member => member?.loss === "+00:00" || member.place === "1" )
-        groupLeader.points = 100
+        let groupLeader = groupMembers.find(member => member?.loss === "+00:00" || member.place === "1" )
+
+        if (!groupLeader) {
+            groupLeader = groupMembers[0]
+            groupLeader.points = 0
+        } else {
+            groupLeader.points = 100
+        }
+
 
         setMemberPoints(groupLeader.resultTime, groupMembers)
 
@@ -36,10 +43,10 @@ function getGroups(root) {
 
 function createParticipantObject(participantArr) {
     const [ n, name, organization,
-            qualification, number, birthYear,
-            resultTime, loss, place ] = participantArr.split(/<\/td>/).map(item => {
-                return item.replace('<td>', '').trim()
-            })
+        qualification, number, birthYear,
+        resultTime, loss, place ] = participantArr.split(/<\/td>/).map(item => {
+        return item.replace('<td>', '').trim()
+    })
 
     return {
         name,
@@ -62,7 +69,7 @@ function setMemberPoints(leaderResultTime, members) {
     members.forEach(member => {
         if (!member.hasOwnProperty('points')) {
             if (member.resultTime) {
-                member.points = (100 * getMemberTimeInSecs(leaderResultTime) / getMemberTimeInSecs(member.resultTime)).toFixed(2)
+                member.points = +(100 * getMemberTimeInSecs(leaderResultTime) / getMemberTimeInSecs(member.resultTime)).toFixed(2)
             } else {
                 member.points = 0
             }
